@@ -1,5 +1,6 @@
 import Component from '../Fleat/Component.js';
 import { Fleat } from '../Fleat/Fleat.js';
+import Home from '../components/Home.js';
 
 class App extends Component {
 	render() {
@@ -7,7 +8,7 @@ class App extends Component {
 
 		switch (route) {
 			default:
-				return Fleat.createElement(this, 'h1', null, 'Hello World!');
+				return Fleat.createElement(this, Home);
 		}
 	}
 }
