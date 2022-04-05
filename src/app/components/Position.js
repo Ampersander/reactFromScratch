@@ -1,10 +1,11 @@
 import Component from "../Fleat/Component.js";
 import { Fleat } from "../Fleat/Fleat.js";
+import Menu from "../Fleat/Menu.js"
 
 class Position extends Component {
   constructor(props) {
     super(props);
-    this.state = { position: "Latitude: 0.0000 Longitude: 0.0000" };
+    this.state = { position: "Get Position" };
   }
    getLocation() {
     let pos = "";
@@ -23,26 +24,41 @@ class Position extends Component {
         "Longitude: " +
         position.coords.longitude
     );
-    this.setState({ position: "Latitude: " + position.coords.latitude });
+    //this.setState({ position: "Latitude: " + position.coords.latitude });
   }
 
   render() {
     return Fleat.createElement(
-      this,
-      "div",
-      { style: "border: 3px solid grey; padding: 10px;" },
-      Fleat.createElement(this, "h1", this.props, `Position Component`),
-      Fleat.createElement(
         this,
-        "button",
-        {
-          class: "btn btn-primary",
-          style: "margin: 5px;",
-          onClick: () => this.getLocation(this),
-        },
-        ` ${this.state.position}`
-      )
-    );
+        "div",
+        null,
+        Fleat.createElement(this, Menu, null, null),
+        Fleat.createElement(
+          this,
+          "h1",
+          { class: "font-bold text-lg text-center" },
+          "League Merch"
+        ),
+        Fleat.createElement(
+            this,
+            "div",
+            { style: "border: 3px solid grey; padding: 10px;",
+            class: "flex flex-wrap justify-center" },
+            
+            Fleat.createElement(
+              this,
+              "button",
+              {
+                class: "btn btn-primary flex flex-wrap justify-center",
+                style: "margin: 5px;",
+                onClick: () => this.getLocation(this),
+              },
+              ` ${this.state.position}`
+            )
+          )
+      );
+    
+    
   }
 }
 
