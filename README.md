@@ -1,6 +1,6 @@
 # Projet Javascript 4IW
 
-*** Malik MONDESIR, Romain BAER, Farid NADERI, Nicolas PERRADIN
+__Malik MONDESIR, Romain BAER, Farid NADERI, Nicolas PERRADIN__
 
 ## Règles
 
