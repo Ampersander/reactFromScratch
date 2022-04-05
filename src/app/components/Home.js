@@ -5,12 +5,32 @@ import Menu from "../Fleat/Menu.js"
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      image: '',
+    };
   }
 
   async init() {}
+
+  readURL = async (selectedFile) => {
+    if (
+      selectedFile.target
+    ) {
+      var reader = new FileReader();
+
+      reader.onload = (e) => {
+        this.setState({ image: e.target.result });
+        console.log(e)
+      };
+      
+      this.shouldUpdate()
+      console.log(this.getState().image)
+
+    }
+
+  };
+
   shouldUpdate() {
-    this.init();
   }
 
   render() {
@@ -37,10 +57,24 @@ class Home extends Component {
             this,
             "div",
             { class: "flex flex-col items-center" },
+            Fleat.createElement(this, "input", {
+              type: "file",
+              id: "image",
+              class: "upload",
+              onChange: (e) => this.readURL(e),
+            }),
             Fleat.createElement(this, "img", {
-              src: "https://fakeimg.pl/350x200/?text=League%20Merch&font=lobster",
-              class: "w-full",
-            })
+              type: "file",
+              class: "w-42 h-42 rounded-full mx-auto",
+              src: `data:image/jpeg;${this.state.image}`,
+              alt: "uploaded image",
+            }),
+            Fleat.createElement(
+              this,
+              "h1",
+              { class: "text-center" },
+              'd'
+            )
           )
         )
       )
