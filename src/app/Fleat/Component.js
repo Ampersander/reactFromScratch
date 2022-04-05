@@ -10,7 +10,7 @@ class Component {
 
 	updateFleat() {
 		var event = new Event('updateFleatDom');
-		const app = document.getElementById('root');
+		const app = document.getElementById('app');
 		app.dispatchEvent(event, this.id);
 	}
 	
