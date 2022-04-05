@@ -1,21 +1,40 @@
 function getProp(obj, keys) {
-	let value = obj;
-	for (keys of keys) { value = value[keys]; }
-	return value;
+  let value = obj;
+  for (keys of keys) {
+    value = value[keys];
+  }
+  return value;
 }
 
-export default String.prototype.interpolate = function (props) {
-	const tags = { 'start': '{{', 'end': '}}', 'delimiter': '.' , 'escape': '\\' };
-	let template = this;
-	while (template.indexOf(tags.start) > 0) {
-		const start = template.indexOf(tags.start);
-		const end = template.indexOf(tags.end);
-		const path = template.substring(start + tags.start.length, end);
-		const keys = path.trim().split(tags.delimiter);
-		const toReplace = template.substring(start, end + tags.end.length);
-		const value = getProp(props, keys);
-		template = template.replace(toReplace, value);
-	}
+function prop_access (obj, str) {
+  if (typeof str === 'function') return '';
+  let arr = str.split("."); // str = 'a.b.c'
+  while (arr.length && (obj = obj[arr.shift()])); // obj = a => b => c
 
-	return template;
-}
+  if (typeof obj === "undefined") console.log(str + " doesn't exist");
+  return (typeof obj === "undefined"
+    ? ""
+    : !!~["", null].indexOf(typeof obj)
+    ? ""
+    : obj);
+};
+
+export default String.prototype.interpolate = function (object) {
+  let finalString = this;
+  const regex = /{{(([a-zA-Z0-9\-\_\ \.])*)}}/g;
+  let m;
+  let result = new Map();
+  while ((m = regex.exec(this)) !== null) {
+    if (m.index === regex.lastIndex) {
+      regex.lastIndex++;
+    }
+    result.set(m[0], m[1].trim());
+  }
+  if (!result || result.size == 0) {
+    return this;
+  }
+  for (let [key, value] of result) {
+    finalString = finalString.replace(key, prop_access(object, value));
+  }
+  return finalString;
+};

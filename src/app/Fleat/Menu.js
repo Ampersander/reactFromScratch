@@ -16,7 +16,7 @@ class Menu extends Component {
         return Fleat.createElement(this, 'nav', { class: 'navbar navbar-expand-lg navbar-light bg-light position-sticky top-0', style: "z-index: 4;" },
             // Container
             Fleat.createElement(this, 'div', { class: 'container-fluid' },
-                Fleat.createElement(this, 'a', { class: 'navbar-brand' }, 'League Merch'),
+                Fleat.createElement(this, 'a', { class: 'navbar-brand', href: '/' }, 'League Merch'),
                 Fleat.createElement(this, 'button', { class: 'navbar-toggler border-0', type: 'button', dataBsToggle: 'collapse', dataBsTarget: '#navbarText', ariaControls: 'navbarText', ariaExpanded: 'false', ariaLabel: 'Toggle navigation' },
                     Fleat.createElement(this, 'span', { class: 'navbar-toggler-icon' })
                 ),
