@@ -31,6 +31,9 @@ class Menu extends Component {
                         Fleat.createElement(this, 'a', { class: 'nav-link', onClick: () => this.goTo('contact', '/contact'), role: 'button' },
                             'Contact'
                         ),
+                        Fleat.createElement(this, 'a', { class: 'nav-link', onClick: () => this.goTo('Position', '/position'), role: 'button' },
+                            'Position'
+                        ),
                     )
                 )
             )
