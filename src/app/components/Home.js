@@ -1,5 +1,6 @@
 import { Fleat } from "/app/Fleat/Fleat.js";
 import Component from "/app/Fleat/Component.js";
+import Menu from "../Fleat/Menu.js"
 
 class Home extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class Home extends Component {
       this,
       "div",
       null,
+      Fleat.createElement(this, Menu, null, null),
       Fleat.createElement(
         this,
         "h1",

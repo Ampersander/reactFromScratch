@@ -3,11 +3,7 @@ services:
   web:
     image: "nginx:latest"
     volumes:
-<<<<<<< Updated upstream
       - "./src:/usr/share/nginx/html"
-=======
-      - "./src/:/usr/share/nginx/html"
->>>>>>> Stashed changes
       - "./nginx.conf:/etc/nginx/conf.d/default.conf"
     ports:
       - "8000:80"
