@@ -42,7 +42,9 @@ function addAttributesToElement(e, props) {
 			const event = key.substring(2).toLowerCase();
 			e.addEventListener(event, props[key]);
 		} else {
-			e.setAttribute(key, props[key]);
+			// ex: dataFoo -> data-foo
+			let hyphenatedKey = key.replace(/([A-Z])/g, function (g) { return '-' + g[0].toLowerCase(); });
+			e.setAttribute(hyphenatedKey, props[key]);
 		}
 	}
 }

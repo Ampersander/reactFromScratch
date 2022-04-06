@@ -9,8 +9,8 @@ class Component {
   }
 
   updateFleat() {
-    var event = new Event("updateFleatDom");
-    const app = document.getElementById("app");
+    var event = new Event('updateFleatDom');
+    const app = document.getElementById('app');
     app.dispatchEvent(event, this.id);
   }
 
@@ -30,6 +30,7 @@ class Component {
       if (newProps !== null) {
         this.props = newProps;
       }
+
       this.rendered = this.render();
 
       if (this.props && this.props.children) {
