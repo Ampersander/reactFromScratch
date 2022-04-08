@@ -19,17 +19,14 @@ class Home extends Component {
       selectedFile.target.files[0]
     ) {
       const reader = new FileReader();
-      reader.onload = (selectedFile) => {
-        this.setState({ image: selectedFile.target.result });
+      reader.onloadend = (file) => {
+        return this.setState({ image: file.target.result });
       };
+      reader.readAsDataURL(selectedFile.target.files[0]);
     }
   };
 
   render() {
-    let animal = {
-      name: "nala",
-      type: this.getState().image,
-    };
     return Fleat.createElement(
       this,
       "div",
@@ -72,16 +69,7 @@ class Home extends Component {
                 class: "w-42 h-42 rounded-full mx-auto mt-8",
                 src: `data:image/png;${this.state.image}`,
                 alt: "uploaded image",
-              }),
-            Fleat.createElement(
-              this,
-              "button",
-              {
-                class: "w-42 h-42 rounded-full mx-auto mt-8",
-                animal,
-              },
-              "{{ animal.type }}"
-            )
+              })
           )
         )
       )

@@ -18,7 +18,7 @@ class Component {
     this.previousState = this.state;
     this.state = { ...this.previousState, ...newState };
     this.updateFleat();
-    return this.updateDOM();
+    return this.updateDOM(null, newState);
   }
 
   getState() {
@@ -41,22 +41,21 @@ class Component {
     return this.rendered;
   }
 
-  updateDOM() {
-    const shouldUpdate = this.shouldUpdate();
+  updateDOM(newState) {
+    const shouldUpdate = this.shouldUpdate(newState);
     if (shouldUpdate || !this.previousRender)
       this.previousRender = this.render();
     return this.previousRender;
   }
 
-  shouldUpdate(newProps) {
+  shouldUpdate(newProps, newState) {
+    console.log(newProps), newState;
     return (
-      JSON.stringify(this.props) !== JSON.stringify(this.newProps) ||
-      newProps === null
+      this.state !== newState || this.props !== newProps
     );
   }
 
-  render() {
-  }
+  render() {}
 }
 
 export default Component;
